@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --primary: 24 85% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 24 85% 45%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 63%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --whatsapp: 142 71% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Shimmer animation for gradient logo */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E67514 40%, #FF8000 70%, #FFFFFF 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+/* Force button styles - Add to App.css */
+.btn-force-white {
+  background: #E67514 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.btn-force-white:hover {
+  background: #C45A0A !important;
+  color: #ffffff !important;
+  transform: scale(1.05);
+}
+
+.btn-gradient-force {
+  background: linear-gradient(135deg, #E67514 0%, #FF8000 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.btn-gradient-force:hover {
+  background: linear-gradient(135deg, #C45A0A 0%, #E67514 100%) !important;
+  color: #ffffff !important;
+  transform: scale(1.05);
+}
+/* Pulse animation for WhatsApp button */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-pulse {
+  animation: pulse 2s infinite;
+}
