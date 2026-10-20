@@ -563,7 +563,7 @@ function Footer() {
               MSME REGISTERED COMPANY
             </div>
             <h2 className="mt-5 font-display text-2xl text-foreground md:text-3xl">
-              Raventrix Technologies Private Limited
+              Raventrix Technologies 
             </h2>
             <p className="mt-4 text-sm text-muted-foreground md:max-w-md">
               Reliable IT consulting, web development, design, and local SEO solutions for SMEs across Tamil Nadu.
