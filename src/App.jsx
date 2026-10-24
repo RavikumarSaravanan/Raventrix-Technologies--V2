@@ -667,7 +667,7 @@ function Footer() {
         
         {/* Copyright - Centered */}
         <div className="mt-10 border-t border-border pt-6 text-center text-sm text-muted-foreground">
-          © {year} Raventrix Technologies Private Limited. All rights reserved.
+          © {year} Raventrix Technologies. All rights reserved.
         </div>
       </div>
     </footer>
