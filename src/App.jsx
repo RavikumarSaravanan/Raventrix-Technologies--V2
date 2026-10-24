@@ -70,6 +70,7 @@ const services = [
 const caseStudies = [
   {
     title: 'AM Frames Photography',
+    preview: 'preview-photo',
     status: 'Completed client project',
     category: 'Wedding and portrait photography',
     objective: 'Create a polished portfolio and make it easy for clients to enquire from mobile devices.',
@@ -78,6 +79,7 @@ const caseStudies = [
   },
   {
     title: 'Sharmi Aari Designer',
+    preview: 'preview-fashion',
     status: 'Completed client project',
     category: 'Fashion and tailoring design studio',
     objective: 'Present the brand with a more premium, functional, and mobile-friendly portfolio experience.',
@@ -86,6 +88,7 @@ const caseStudies = [
   },
   {
     title: 'Rytham Fashions',
+    preview: 'preview-boutique',
     status: 'Completed client project',
     category: 'Fashion boutique',
     objective: 'Create a cleaner, easier-to-browse website that makes the boutique more approachable online.',
@@ -94,6 +97,7 @@ const caseStudies = [
   },
   {
     title: 'Star Boat Works',
+    preview: 'preview-boat',
     status: 'Completed client project',
     category: 'Boat manufacturing and marine services',
     objective: 'Present the company’s fiberglass boat manufacturing, repair, and marine finishing services to coastal customers.',
@@ -102,6 +106,7 @@ const caseStudies = [
   },
   {
     title: 'IoT Data Center Monitoring Dashboard',
+    preview: 'preview-dashboard',
     status: 'Concept / product demo',
     category: 'Operational technology dashboard',
     objective: 'Design a monitoring interface for infrastructure visibility, alerting, and quick decision-making.',
@@ -110,28 +115,13 @@ const caseStudies = [
   },
   {
     title: 'Micro Business Digital Analytics System',
+    preview: 'preview-analytics',
     status: 'Concept / internal prototype',
     category: 'Business analytics',
     objective: 'Explore a practical reporting tool for micro businesses that need simple insights without enterprise complexity.',
     work: 'User research, dashboard structures, KPI alignment, and prototype design for lightweight business reporting.',
     link: '#',
   },
-];
-
-const trustPoints = [
-  'Local understanding of Tamil Nadu businesses and customer behaviour.',
-  'Clear project scope, deliverables, and communication from the start.',
-  'Responsive, mobile-friendly design for real customer journeys.',
-  'Direct communication with a practical and transparent process.',
-  'Honest pricing and timelines based on project scope and complexity.',
-  'Support and handover arrangements to make the final website usable after launch.',
-];
-
-const processSteps = [
-  { step: '01', title: 'Discovery', description: 'Understand your business, goals, customers, current challenges, and project expectations.' },
-  { step: '02', title: 'Proposal', description: 'Agree on scope, deliverables, timeline, and pricing before development begins.' },
-  { step: '03', title: 'Development', description: 'Design, build, review, and refine the agreed solution with clear client feedback loops.' },
-  { step: '04', title: 'Launch & Handover', description: 'Test the site, deploy it, and explain how to manage and update it after launch.' },
 ];
 
 const faqs = [
@@ -271,26 +261,36 @@ function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-2xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-8">
-        <a href="#home" className="group relative font-display text-3xl font-extrabold tracking-[-0.04em] text-foreground transition hover:scale-[1.02] md:text-4xl" aria-label="Raventrix home">
-          <span className="shimmer-text">RAVENTRIX®</span>
+    <header className="site-header">
+      <nav className="site-nav" aria-label="Main navigation">
+        <a href="#home" className="brand-lockup" aria-label="Raventrix Technologies home">
+          <img
+            className="brand-logo"
+            src="/raventrix-logo-192.webp"
+            srcSet="/raventrix-logo-192.webp 192w, /raventrix-logo-384.webp 384w"
+            sizes="(max-width: 640px) 88px, 102px"
+            width="384"
+            height="273"
+            alt="Raventrix Technologies"
+            fetchPriority="high"
+            decoding="async"
+          />
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="desktop-nav">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="relative text-sm font-medium text-muted-foreground transition hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+            <a key={link.href} href={link.href} className={link.label === 'Home' ? 'active' : ''}>
               {link.label}
             </a>
           ))}
-          <a href="#lead-form" className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-            Discuss Your Project
+          <a href="#lead-form" className="button button-primary nav-cta">
+            Discuss Your Project <span aria-hidden="true">→</span>
           </a>
         </div>
 
         <button
           type="button"
-          className="rounded-full border border-border p-2.5 text-foreground transition hover:border-primary hover:text-primary md:hidden"
+          className="menu-toggle"
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={open}
@@ -301,22 +301,20 @@ function Header() {
       </nav>
 
       {open && (
-        <div id="mobile-navigation" className="border-t border-border bg-card/95 px-5 py-5 md:hidden">
-          <div className="flex flex-col gap-2">
+        <div id="mobile-navigation" className="mobile-nav">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 text-center text-sm text-muted-foreground transition hover:bg-secondary hover:text-foreground"
+                className="mobile-nav-link"
               >
                 {link.label}
               </a>
             ))}
-            <a href="#lead-form" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">
+            <a href="#lead-form" onClick={() => setOpen(false)} className="button button-primary">
               Discuss Your Project
             </a>
-          </div>
         </div>
       )}
     </header>
@@ -325,75 +323,112 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden px-5 pb-16 pt-12 md:px-8 md:pb-24 md:pt-20">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(230,117,20,0.18),transparent_32%),radial-gradient(circle_at_80%_15%,rgba(255,128,0,0.1),transparent_26%)]" />
-      <div className="mx-auto max-w-7xl">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="text-center lg:text-left">
-            <div className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
-              Based in Tharangambadi
-            </div>
-            <h1 className="mt-6 max-w-3xl text-4xl leading-[1.06] tracking-[-0.04em] text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Build a Stronger Digital Presence for Your Business.
-            </h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
-              Raventrix Technologies helps businesses in Tharangambadi, Mayiladuthurai, and across Tamil Nadu showcase their services, improve local visibility, and simplify customer enquiries through practical websites and digital solutions.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
-              <a href="#lead-form" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground shadow-[0_18px_40px_rgba(230,117,20,0.2)] transition hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-                Discuss Your Project
-              </a>
-              <a href="#portfolio" className="inline-flex items-center justify-center rounded-full border border-border bg-transparent px-6 py-3.5 text-base font-semibold text-foreground transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-                Explore Our Work
-              </a>
-            </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
-              {['Responsive websites', 'Practical local SEO', 'Clear enquiry flow'].map((label) => (
-                <span key={label} className="rounded-full border border-border bg-card px-4 py-2 text-sm text-muted-foreground">
-                  {label}
-                </span>
-              ))}
-            </div>
-            <p className="mt-6 text-xs uppercase tracking-[0.26em] text-muted-foreground">Based in Tharangambadi, Tamil Nadu · Working with businesses across India.</p>
+    <section id="home" className="hero-section">
+      <div className="hero-glow" aria-hidden="true" />
+      <div className="section-inner hero-layout">
+        <div className="hero-copy">
+          <p className="eyebrow"><span>Ideas</span><i>→</i><span>Websites</span><i>→</i><span>Growth</span></p>
+          <h1>Turn Your Business Into a Stronger <span>Digital Brand.</span></h1>
+          <p className="hero-description">
+            Raventrix Technologies helps businesses build professional websites, improve their local online presence, create better digital experiences, and streamline everyday work with practical technology.
+          </p>
+          <div className="hero-actions">
+            <a href="#lead-form" className="button button-primary">Discuss Your Project <span aria-hidden="true">→</span></a>
+            <a href="#portfolio" className="button button-outline">Explore Our Work</a>
           </div>
+          <p className="hero-location"><span aria-hidden="true">⌖</span> Based in Tharangambadi, Tamil Nadu <b>·</b> Working with businesses across India.</p>
+        </div>
 
-          <div className="relative">
-            <div className="absolute inset-4 rounded-[2.2rem] bg-primary/10 blur-3xl" />
-            <div className="relative rounded-[2rem] border border-border bg-card/80 p-4 backdrop-blur sm:p-5">
-              <div className="rounded-[1.5rem] border border-border bg-background p-4 sm:p-6">
-                <div className="mb-5 flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.28em] text-muted-foreground">Digital growth</p>
-                    <h2 className="mt-2 font-display text-2xl text-foreground md:text-3xl">Business-first website support</h2>
-                  </div>
-                  <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/15 text-primary">
-                    <Icon name="code" className="h-6 w-6" />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {[
-                    ['Website Design', 'Clear user journeys'],
-                    ['SEO', 'Local visibility'],
-                    ['GBP', 'Profile clarity'],
-                    ['Automation', 'Faster workflows'],
-                  ].map(([title, subtitle]) => (
-                    <div key={title} className="rounded-2xl border border-border bg-secondary/40 p-4">
-                      <div className="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-primary/15 text-primary">
-                        <Icon name={title === 'Website Design' ? 'design' : title === 'SEO' ? 'search' : title === 'GBP' ? 'map' : 'spark'} className="h-5 w-5" />
-                      </div>
-                      <p className="text-sm font-semibold text-foreground">{title}</p>
-                      <p className="mt-1 text-xs text-muted-foreground">{subtitle}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-5 rounded-2xl border border-primary/20 bg-primary/10 p-4">
-                  <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">Service area</p>
-                  <p className="mt-2 font-display text-xl text-foreground">Tharangambadi · Mayiladuthurai · Tamil Nadu</p>
-                </div>
+        <div className="hero-art" aria-label="Website design shown on a laptop and phone">
+          <div className="hero-sunburst" />
+          <div className="laptop">
+            <div className="laptop-screen">
+              <div className="browser-bar"><span /><span /><span /><i>raventrix.in</i><b>✦</b></div>
+              <div className="mock-website">
+                <div className="mock-nav"><strong>RAVENTRIX</strong><span>WORK&nbsp;&nbsp;&nbsp; ABOUT&nbsp;&nbsp;&nbsp; CONTACT</span><b>→</b></div>
+                <div className="mock-hero-copy"><small>DESIGN FOR WHAT'S NEXT</small><strong>Your Vision.<br /><em>Our Code.</em></strong><span>Digital experiences built around your business.</span><b>LET'S TALK&nbsp; →</b></div>
+                <div className="mock-horizon" />
               </div>
             </div>
+            <div className="laptop-base" />
+          </div>
+          <div className="phone-mockup">
+            <div className="phone-speaker" />
+            <div className="phone-screen">
+              <small>RAVENTRIX®</small>
+              <strong>Your Vision<br /><em>Our Code</em></strong>
+              <span>Beautiful websites.<br />Built to grow.</span>
+              <b>GET STARTED</b>
+              <i className="phone-screen-image" />
+            </div>
+          </div>
+          <div className="hero-art-caption"><span /> Thoughtful design. Practical technology.</div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CapabilityStrip() {
+  const capabilities = [
+    ['design', 'Modern Design', '& Development'],
+    ['search', 'SEO & Local', 'Visibility'],
+    ['spark', 'AI & Automation', 'Solutions'],
+    ['strategy', 'Ongoing Support', '& Guidance'],
+  ];
+
+  return (
+    <div className="capability-strip">
+      <div className="section-inner capability-grid">
+        {capabilities.map(([icon, title, subtitle]) => (
+          <div className="capability-item" key={title}>
+            <span className="icon-tile"><Icon name={icon} className="h-5 w-5" /></span>
+            <p><strong>{title}</strong><span>{subtitle}</span></p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ServicesSection() {
+  return (
+    <section id="services" className="content-section services-section">
+      <div className="section-inner">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow"><span>What we offer</span></p>
+            <h2>Our Services</h2>
+            <p>We provide complete digital solutions to help your business look professional, reach more customers and work smarter.</p>
+          </div>
+          <a className="text-link" href="#lead-form">View all services <span aria-hidden="true">→</span></a>
+        </div>
+        <div className="service-grid">
+          {services.map((service) => (
+            <article key={service.title} className="service-card">
+              <span className="icon-tile"><Icon name={service.icon} className="h-5 w-5" /></span>
+              <h3>{service.title}</h3>
+              <p>{service.deliverables}</p>
+              <a href="#lead-form">Learn More <span aria-hidden="true">→</span></a>
+            </article>
+          ))}
+        </div>
+        <div className="location-banner">
+          <div className="location-copy">
+            <p className="eyebrow"><span>Local roots</span><i>·</i><span>Digital solutions</span></p>
+            <h2>Proudly Based in Tharangambadi</h2>
+            <p>We work with businesses across Tamil Nadu and India, helping them grow with the right digital solutions.</p>
+            <a href="#contact" className="button button-outline">Get in Touch <span aria-hidden="true">→</span></a>
+          </div>
+          <div className="coast-art" aria-hidden="true">
+            <span className="coast-sun" />
+            <svg viewBox="0 0 460 150" fill="none">
+              <path d="M0 96c61-17 91-14 148-1 46 11 80 8 121-4 50-15 102-10 191 9v50H0V96Z" fill="#080a09" />
+              <path d="M0 115c80-19 131 1 196 4 82 4 133-28 264-5" stroke="#e67514" strokeOpacity=".55" />
+              <path d="m94 99 35-36 17 3 33 33m-57-32 28-4 14 8-12 2m-31-8-9 32m38-28 2 27m-16-22 11-2" stroke="#f7a247" strokeWidth="2" />
+              <path d="m248 102 31-29 18 2 31 26m-53-26 25-5 14 7-10 3m-28-4-7 26m34-23 2 21" stroke="#f7a247" strokeWidth="2" />
+              <path d="M0 126h460" stroke="#f7a247" strokeOpacity=".3" />
+            </svg>
           </div>
         </div>
       </div>
@@ -401,36 +436,30 @@ function Hero() {
   );
 }
 
-function ServicesSection() {
-  return (
-    <section id="services" className="px-5 py-20 md:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Services</p>
-          <h2 className="mt-4 font-display text-4xl text-foreground md:text-6xl">Practical digital support for growing businesses.</h2>
-          <p className="mt-5 text-lg leading-8 text-muted-foreground">
-            From website development in Tharangambadi to local SEO services in Tamil Nadu, Raventrix Technologies helps small businesses improve their digital presence with services that match real customer needs, business workflows, and local search behaviour.
-          </p>
-        </div>
+function TrustSection() {
+  const trustFeatures = [
+    ['map', 'Local Understanding', 'We understand the needs of businesses in Tamil Nadu.'],
+    ['strategy', 'Clear Process', 'Define scope, deliverables, timeline and price upfront.'],
+    ['design', 'Responsive Design', 'Works perfectly on all devices and screen sizes.'],
+    ['code', 'Direct Communication', 'Work directly with the developer.'],
+    ['spark', 'Transparent & Honest', 'No hidden costs or false promises.'],
+    ['brand', 'Support & Guidance', 'Help even after the launch.'],
+  ];
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service) => (
-            <article key={service.title} className="group rounded-[2rem] border border-border bg-card p-6 transition hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_24px_80px_rgba(230,117,20,0.12)]">
-              <div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-primary/15 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
-                <Icon name={service.icon} className="h-7 w-7" />
-              </div>
-              <h3 className="font-display text-2xl text-foreground">{service.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.problem}</p>
-              <div className="mt-5 rounded-2xl border border-border bg-background p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-primary">What is included</p>
-                <p className="mt-2 text-sm leading-7 text-foreground">{service.deliverables}</p>
-              </div>
-              <p className="mt-5 text-sm leading-7 text-muted-foreground">
-                <span className="font-semibold text-foreground">Best for:</span> {service.audience}
-              </p>
-              <a href="#lead-form" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-accent">
-                {service.cta} <span aria-hidden="true">→</span>
-              </a>
+  return (
+    <section id="about" className="content-section about-section">
+      <div className="section-inner about-layout">
+        <div className="about-intro">
+          <p className="eyebrow"><span>Your digital partner</span></p>
+          <h2>Why Choose Raventrix?</h2>
+          <p>We focus on practical solutions, clear communication and real value for your business.</p>
+        </div>
+        <div className="trust-grid">
+          {trustFeatures.map(([icon, title, description]) => (
+            <article className="trust-card" key={title}>
+              <span className="icon-tile"><Icon name={icon} className="h-4 w-4" /></span>
+              <h3>{title}</h3>
+              <p>{description}</p>
             </article>
           ))}
         </div>
@@ -439,56 +468,36 @@ function ServicesSection() {
   );
 }
 
-function TrustSection() {
-  return (
-    <section id="about" className="px-5 py-20 md:px-8">
-      <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-border bg-card p-6 md:p-10">
-        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Why choose Raventrix</p>
-            <h2 className="mt-4 font-display text-4xl text-foreground md:text-5xl">A practical partner for small business growth.</h2>
-            <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Businesses choose Raventrix when they need a credible digital presence without vague promises or confusing processes. The focus is on clarity, direct communication, and solutions that fit a real business need.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {['Local understanding', 'Clear scope', 'Responsive design', 'Transparent process'].map((item) => (
-                <span key={item} className="rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm text-primary">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid gap-4">
-            {trustPoints.map((point) => (
-              <div key={point} className="flex items-start gap-3 rounded-2xl border border-border bg-background p-4">
-                <span className="mt-1.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">✓</span>
-                <p className="text-sm leading-7 text-muted-foreground">{point}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function ProcessSection() {
-  return (
-    <section className="px-5 py-20 md:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Our process</p>
-          <h2 className="mt-4 font-display text-4xl text-foreground md:text-5xl">A simple, transparent working process.</h2>
-        </div>
+  const steps = [
+    ['01', 'Understand', 'Discuss your goals, needs and budget.'],
+    ['02', 'Plan', 'Define scope, features, timeline and quote.'],
+    ['03', 'Design', 'Create wireframes and visual designs.'],
+    ['04', 'Develop', 'Build, test and refine the solution.'],
+    ['05', 'Launch', 'Go live with confidence.'],
+    ['06', 'Support', 'Ongoing support and improvements.'],
+  ];
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {processSteps.map((item) => (
-            <div key={item.step} className="rounded-[2rem] border border-border bg-card p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary">{item.step}</p>
-              <h3 className="mt-4 font-display text-2xl text-foreground">{item.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-muted-foreground">{item.description}</p>
-            </div>
+  return (
+    <section className="process-section">
+      <div className="section-inner">
+        <div className="section-heading process-heading">
+          <div>
+            <p className="eyebrow"><span>How it works</span></p>
+            <h2>Our Simple Process</h2>
+            <p>A clear and collaborative process to turn your ideas into a working solution.</p>
+          </div>
+        </div>
+        <div className="process-grid">
+          {steps.map(([number, title, description], index) => (
+            <article className="process-step" key={number}>
+              <div className="process-step-top">
+                <span className="process-icon"><Icon name={['search', 'strategy', 'design', 'code', 'spark', 'brand'][index]} className="h-5 w-5" /></span>
+                <i aria-hidden="true" />
+              </div>
+              <h3>{number}. {title}</h3>
+              <p>{description}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -496,49 +505,61 @@ function ProcessSection() {
   );
 }
 
+function ProjectPreview({ project }) {
+  const previewTitles = {
+    'AM Frames Photography': 'AM FRAMES',
+    'Sharmi Aari Designer': 'SHARMI AARI',
+    'Rytham Fashions': 'RYTHAM',
+    'Star Boat Works': 'STAR BOAT',
+    'IoT Data Center Monitoring Dashboard': 'IOT MONITOR',
+    'Micro Business Digital Analytics System': 'BUSINESS INSIGHTS',
+  };
+  return (
+    <div className={`project-preview ${project.preview}`} aria-hidden="true">
+      <div className="preview-browser"><span /><span /><span /><i /></div>
+      <div className="preview-screen">
+        <strong>{previewTitles[project.title]}</strong>
+        <span />
+        <i />
+        <b />
+      </div>
+      <div className="preview-device"><span /></div>
+    </div>
+  );
+}
+
 function PortfolioSection() {
   return (
-    <section id="portfolio" className="px-5 py-20 md:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+    <section id="portfolio" className="content-section portfolio-section">
+      <div className="section-inner">
+        <div className="section-heading">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Portfolio</p>
-            <h2 className="mt-4 font-display text-4xl text-foreground md:text-6xl">Selected project work.</h2>
+            <p className="eyebrow"><span>Featured projects</span></p>
+            <h2>Our Work</h2>
+            <p>Real websites, real businesses. Explore some of our recent projects and see how we help brands build their digital presence.</p>
           </div>
-          <p className="max-w-xl text-base leading-7 text-muted-foreground">
-            These examples highlight project objectives and work completed. No unverified performance outcomes are claimed.
-          </p>
+          <a className="text-link" href="#lead-form">View all projects <span aria-hidden="true">→</span></a>
         </div>
-
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="project-grid">
           {caseStudies.map((project) => {
             const isDemo = project.link === '#';
             return (
-              <article key={project.title} className="group rounded-[2rem] border border-border bg-card p-5 transition hover:-translate-y-1 hover:border-primary/60">
-                <div className="rounded-2xl border border-border bg-background p-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="inline-flex rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-                      {project.category}
-                    </span>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{project.status}</span>
-                  </div>
-                  <h3 className="mt-4 font-display text-3xl text-foreground">{project.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.objective}</p>
-                </div>
-                <div className="mt-5 space-y-3 text-sm leading-7 text-muted-foreground">
-                  <p>
-                    <span className="font-semibold text-foreground">What was designed or developed:</span> {project.work}
-                  </p>
-                </div>
+              <article key={project.title} className="project-card">
+                <ProjectPreview project={project} />
+                <div className="project-card-copy">
+                  <span className="project-category">{project.category}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.objective}</p>
                 {isDemo ? (
-                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                  <div className="project-link project-link-muted">
                     Concept project <span aria-hidden="true">→</span>
                   </div>
                 ) : (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                    Open project <span aria-hidden="true">→</span>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="project-link">
+                    View Project <span aria-hidden="true">→</span>
                   </a>
                 )}
+                </div>
               </article>
             );
           })}
@@ -550,17 +571,17 @@ function PortfolioSection() {
 
 function FAQSection() {
   return (
-    <section aria-labelledby="faq-title" className="px-5 py-20 md:px-8">
-      <div className="mx-auto max-w-4xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">FAQs</p>
-        <h2 id="faq-title" className="mt-4 font-display text-4xl text-foreground md:text-5xl">Frequently asked questions.</h2>
-        <div className="mt-8 divide-y divide-border rounded-3xl border border-border bg-card px-5 md:px-6">
+    <section aria-labelledby="faq-title" className="faq-section">
+      <div className="section-inner faq-inner">
+        <p className="eyebrow"><span>Good to know</span></p>
+        <h2 id="faq-title">Frequently Asked Questions</h2>
+        <div className="faq-list">
           {faqs.map(({ question, answer }) => (
-            <details key={question} className="group py-5">
-              <summary className="cursor-pointer list-none font-semibold text-foreground marker:hidden">
+            <details key={question}>
+              <summary>
                 {question}
               </summary>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">{answer}</p>
+              <p>{answer}</p>
             </details>
           ))}
         </div>
@@ -606,12 +627,12 @@ function ContactSection() {
       return;
     }
 
-    if (!trimmedEmail) {
-      setError('Please enter your email address so we can follow up.');
+    if (!trimmedMobile) {
+      setError('Please enter your mobile number so we can follow up.');
       return;
     }
 
-    if (trimmedMobile && !validateMobile(trimmedMobile)) {
+    if (!validateMobile(trimmedMobile)) {
       setError('Please enter a valid 10-digit mobile number.');
       return;
     }
@@ -664,80 +685,59 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="px-5 py-20 md:px-8">
-      <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-border bg-card p-6 md:p-10">
-        <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Contact</p>
-            <h2 className="mt-4 font-display text-4xl text-foreground md:text-5xl">Let’s talk about your next project.</h2>
-            <div className="mt-8 space-y-4 text-sm leading-7 text-muted-foreground">
-              <p>
-                <span className="font-semibold text-foreground">Address:</span> Tharangambadi, Tamil Nadu 609313, India
-              </p>
-              <p>
-                <span className="font-semibold text-foreground">Phone and WhatsApp:</span>{' '}
-                <a href={`tel:${PHONE_DISPLAY.replace(/[^+\d]/g, '')}`} className="text-primary hover:text-accent">{PHONE_DISPLAY}</a>
-              </p>
-              <p>
-                <span className="font-semibold text-foreground">Email:</span>{' '}
-                <a href={`mailto:${EMAIL}`} className="text-primary hover:text-accent">{EMAIL}</a>
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-center font-semibold text-primary-foreground transition hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-                View on Google Maps
-              </a>
-              <a href={GBP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-center font-semibold text-foreground transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-                Google Business Profile
-              </a>
-            </div>
-
-            <div className="mt-8 rounded-[2rem] border border-border bg-background p-5">
-              <p className="text-sm uppercase tracking-[0.22em] text-muted-foreground">Office hours</p>
-              <div className="mt-4 space-y-4">
-                {[
-                  ['Monday - Friday', '9:00 AM - 6:00 PM'],
-                  ['Saturday', '10:00 AM - 2:00 PM'],
-                  ['Sunday', 'Closed'],
-                ].map(([day, time]) => (
-                  <div key={day} className="flex items-center justify-between gap-4 border-b border-border pb-3 text-sm">
-                    <span className="text-muted-foreground">{day}</span>
-                    <span className="font-semibold text-foreground">{time}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+    <section id="contact" className="contact-section">
+      <div className="section-inner contact-panel">
+        <div className="contact-copy">
+          <p className="eyebrow"><span>Let's talk</span></p>
+          <h2>Get Started Today</h2>
+          <p className="contact-lead">Tell us about your business and what you need. We’ll get back to you with a suitable solution.</p>
+          <div className="contact-details">
+            <a href={`tel:${PHONE_DISPLAY.replace(/[^+\d]/g, '')}`} className="contact-detail">
+              <span className="icon-tile"><Icon name="strategy" className="h-4 w-4" /></span>
+              <span><strong>Phone / WhatsApp</strong><small>{PHONE_DISPLAY}</small></span>
+            </a>
+            <a href={`mailto:${EMAIL}`} className="contact-detail">
+              <span className="icon-tile"><Icon name="design" className="h-4 w-4" /></span>
+              <span><strong>Email</strong><small>{EMAIL}</small></span>
+            </a>
+            <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="contact-detail">
+              <span className="icon-tile"><Icon name="map" className="h-4 w-4" /></span>
+              <span><strong>Location</strong><small>Tharangambadi, Mayiladuthurai dt,<br />Tamil Nadu 609313</small></span>
+            </a>
           </div>
+          <div className="contact-social-links">
+            <a href={GBP_URL} target="_blank" rel="noopener noreferrer">Google Business Profile <span aria-hidden="true">↗</span></a>
+            <a href={MAPS_URL} target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
 
-          <form id="lead-form" onSubmit={submit} className="rounded-[2rem] border border-border bg-background p-5 md:p-7">
-            <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-            <input type="hidden" name="subject" value="New business enquiry from Raventrix Technologies website" />
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label htmlFor="lead-name" className="mb-2 block text-sm font-medium text-foreground">Full name*</label>
-                <input id="lead-name" name="name" value={form.name} onChange={updateField('name')} required className="w-full rounded-2xl border border-input bg-card px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" placeholder="Your name" autoComplete="name" />
-              </div>
-
-              <div>
-                <label htmlFor="lead-business" className="mb-2 block text-sm font-medium text-foreground">Business name*</label>
-                <input id="lead-business" name="business" value={form.business} onChange={updateField('business')} required className="w-full rounded-2xl border border-input bg-card px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" placeholder="Business name" autoComplete="organization" />
-              </div>
-
-              <div>
-                <label htmlFor="lead-mobile" className="mb-2 block text-sm font-medium text-foreground">Mobile number</label>
-                <input id="lead-mobile" name="mobile" value={form.mobile} onChange={updateField('mobile')} inputMode="numeric" className="w-full rounded-2xl border border-input bg-card px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" placeholder="10-digit mobile number" autoComplete="tel" />
-              </div>
-
-              <div>
-                <label htmlFor="lead-email" className="mb-2 block text-sm font-medium text-foreground">Email address*</label>
-                <input id="lead-email" name="email" type="email" value={form.email} onChange={updateField('email')} required className="w-full rounded-2xl border border-input bg-card px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" placeholder="you@example.com" autoComplete="email" />
-              </div>
+        <form id="lead-form" onSubmit={submit} className="contact-form">
+          <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+          <input type="hidden" name="subject" value="New business enquiry from Raventrix Technologies website" />
+          <div className="form-grid">
+            <div className="form-field">
+              <label htmlFor="lead-name">Full Name*</label>
+              <input id="lead-name" name="name" value={form.name} onChange={updateField('name')} required placeholder="Your name" autoComplete="name" />
             </div>
 
-            <div className="mt-4">
-              <label htmlFor="lead-service" className="mb-2 block text-sm font-medium text-foreground">Service required*</label>
-              <select id="lead-service" name="service" value={form.service} onChange={updateField('service')} required className="w-full rounded-2xl border border-input bg-card px-4 py-3 text-foreground outline-none transition focus:border-primary">
+            <div className="form-field">
+              <label htmlFor="lead-business">Business Name*</label>
+              <input id="lead-business" name="business" value={form.business} onChange={updateField('business')} required placeholder="Business name" autoComplete="organization" />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="lead-mobile">Phone / WhatsApp*</label>
+              <input id="lead-mobile" name="mobile" value={form.mobile} onChange={updateField('mobile')} inputMode="numeric" required placeholder="10-digit mobile number" autoComplete="tel" />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="lead-email">Email (Optional)</label>
+              <input id="lead-email" name="email" type="email" value={form.email} onChange={updateField('email')} placeholder="you@example.com" autoComplete="email" />
+            </div>
+
+            <div className="form-field">
+              <label htmlFor="lead-service">Service Required*</label>
+              <select id="lead-service" name="service" value={form.service} onChange={updateField('service')} required>
                 <option value="">Select a service</option>
                 {serviceOptions.map((service) => (
                   <option key={service} value={service}>{service}</option>
@@ -745,48 +745,35 @@ function ContactSection() {
               </select>
             </div>
 
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              <div>
-                <label htmlFor="lead-budget" className="mb-2 block text-sm font-medium text-foreground">Budget range</label>
-                <select id="lead-budget" name="budget" value={form.budget} onChange={updateField('budget')} className="w-full rounded-2xl border border-input bg-card px-4 py-3 text-foreground outline-none transition focus:border-primary">
-                  <option value="">Select budget</option>
-                  <option value="Under ₹20,000">Under ₹20,000</option>
-                  <option value="₹20,000 - ₹50,000">₹20,000 - ₹50,000</option>
-                  <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
-                  <option value="₹1,00,000+">₹1,00,000+</option>
-                  <option value="Prefer not to say">Prefer not to say</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="lead-timeline" className="mb-2 block text-sm font-medium text-foreground">Preferred timeline</label>
-                <select id="lead-timeline" name="timeline" value={form.timeline} onChange={updateField('timeline')} className="w-full rounded-2xl border border-input bg-card px-4 py-3 text-foreground outline-none transition focus:border-primary">
-                  <option value="">Select timeline</option>
-                  <option value="ASAP">ASAP</option>
-                  <option value="Within 1 month">Within 1 month</option>
-                  <option value="1-3 months">1-3 months</option>
-                  <option value="Flexible">Flexible</option>
-                </select>
-              </div>
+            <div className="form-field">
+              <label htmlFor="lead-budget">Budget Range (Optional)</label>
+              <select id="lead-budget" name="budget" value={form.budget} onChange={updateField('budget')}>
+                <option value="">Select budget range</option>
+                <option value="Under ₹20,000">Under ₹20,000</option>
+                <option value="₹20,000 - ₹50,000">₹20,000 - ₹50,000</option>
+                <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
+                <option value="₹1,00,000+">₹1,00,000+</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
             </div>
 
-            <div className="mt-4">
-              <label htmlFor="lead-description" className="mb-2 block text-sm font-medium text-foreground">Project description*</label>
-              <textarea id="lead-description" name="message" value={form.description} onChange={updateField('description')} required rows="5" className="w-full rounded-2xl border border-input bg-card px-4 py-3 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" placeholder="Tell us about your business, goals, and what you need help with." />
+            <div className="form-field form-field-wide">
+              <label htmlFor="lead-description">Project Brief / Description*</label>
+              <textarea id="lead-description" name="message" value={form.description} onChange={updateField('description')} required rows="4" placeholder="Tell us about your business and requirements." />
             </div>
+          </div>
 
-            <p className="mt-4 text-xs leading-6 text-muted-foreground">
-              Your details will be used only to understand your enquiry and respond to your request. No unnecessary personal data is collected.
+          <p className="form-note">
+              We respect your privacy. Your information is safe with us.
             </p>
 
-            {error && <p role="alert" className="mt-4 rounded-2xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive">{error}</p>}
-            {status && <p role="status" aria-live="polite" className="mt-4 rounded-2xl border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-primary">{status}</p>}
+          {error && <p role="alert" className="form-message form-error">{error}</p>}
+          {status && <p role="status" aria-live="polite" className="form-message form-success">{status}</p>}
 
-            <button type="submit" disabled={isSubmitting} className="mt-5 w-full rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground transition hover:bg-accent disabled:cursor-not-allowed disabled:opacity-70">
-              {isSubmitting ? 'Submitting...' : 'Send Message'}
-            </button>
-          </form>
-        </div>
+          <button type="submit" disabled={isSubmitting} className="button button-primary form-submit">
+            {isSubmitting ? 'Submitting...' : 'Send Message'} <span aria-hidden="true">→</span>
+          </button>
+        </form>
       </div>
     </section>
   );
@@ -816,22 +803,31 @@ function Footer() {
   const year = useMemo(() => new Date().getFullYear(), []);
 
   return (
-    <footer className="border-t border-border bg-background px-5 py-12 md:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-8 text-center md:grid-cols-[1.2fr_0.8fr_0.8fr] md:text-left">
-          <div>
-            <div className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
-              MSME registered company
-            </div>
-            <h2 className="mt-5 font-display text-2xl text-foreground md:text-3xl">Raventrix Technologies</h2>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground md:max-w-md">
+    <footer className="site-footer">
+      <div className="section-inner">
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <a href="#home" className="brand-lockup" aria-label="Raventrix Technologies home">
+              <img
+                className="brand-logo"
+                src="/raventrix-logo-192.webp"
+                srcSet="/raventrix-logo-192.webp 192w, /raventrix-logo-384.webp 384w"
+                sizes="112px"
+                width="384"
+                height="273"
+                alt="Raventrix Technologies"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <p>
               Website development, UI/UX design, local SEO, Google Business Profile support, AI automation, and practical business technology solutions for Tamil Nadu businesses.
             </p>
           </div>
 
-          <div>
+          <div className="footer-column">
             <h3 className="font-semibold text-foreground">Services</h3>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <ul>
               {serviceOptions.map((service) => (
                 <li key={service}>
                   <a href="#services" className="transition hover:text-primary">{service}</a>
@@ -840,9 +836,9 @@ function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="footer-column">
             <h3 className="font-semibold text-foreground">Contact</h3>
-            <div className="mt-4 space-y-3 text-sm">
+            <div className="footer-contact">
               <p>
                 <span className="text-muted-foreground">Phone:</span>{' '}
                 <a href={`tel:${PHONE_DISPLAY.replace(/[^+\d]/g, '')}`} className="font-medium text-primary hover:text-accent">{PHONE_DISPLAY}</a>
@@ -860,10 +856,17 @@ function Footer() {
               <p className="text-muted-foreground">Tharangambadi, Tamil Nadu 609313</p>
             </div>
           </div>
+
+          <div className="footer-column footer-social">
+            <h3>Follow Us</h3>
+            <p>Creating digital solutions for better businesses.</p>
+            <a href={GBP_URL} target="_blank" rel="noopener noreferrer">Google Business Profile <span aria-hidden="true">↗</span></a>
+          </div>
         </div>
 
-        <div className="mt-10 border-t border-border pt-6 text-center text-sm text-muted-foreground">
-          © {year} Raventrix Technologies. All rights reserved.
+        <div className="footer-bottom">
+          <span>© {year} Raventrix Technologies. All rights reserved.</span>
+          <span>Designed with purpose <b>·</b> Built for growth</span>
         </div>
       </div>
     </footer>
@@ -875,10 +878,11 @@ export default function App() {
     <main className="min-h-screen bg-background text-foreground">
       <Header />
       <Hero />
+      <CapabilityStrip />
       <ServicesSection />
+      <PortfolioSection />
       <TrustSection />
       <ProcessSection />
-      <PortfolioSection />
       <FAQSection />
       <ContactSection />
       <Footer />
