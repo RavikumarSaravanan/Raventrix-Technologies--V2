@@ -1,74 +1,68 @@
-# Raventrix Technologies - SEO Keywords Strategy
+# Raventrix Technologies: SEO Keyword Strategy
 
-## Primary Keywords (Target #1 Ranking)
-1. IT consulting Tharangambadi
-2. web development Tharangambadi
-3. local SEO Tharangambadi
-4. website developer Tharangambadi
-5. Google Business Profile management Tharangambadi
+SEO can improve relevance and discoverability, but no keyword or on-page change guarantees a #1 ranking. Rankings depend on competition, location, business profile signals, links, content quality, and time.
 
-## Secondary Keywords
-1. UI/UX design Tamil Nadu
-2. graphic design Tharangambadi
-3. digital marketing Mayiladuthurai
-4. SEO services near me
-5. best IT company Tharangambadi
-6. MSME registered company Tamil Nadu
-7. small business IT support Tharangambadi
-8. Google Maps optimization Tharangambadi
-9. website design Tharangambadi
-10. e-commerce development Tharangambadi
+## Primary service and location phrases
 
-## Long-Tail Keywords
-1. affordable IT consulting services in Tharangambadi
-2. best website development company near Mayiladuthurai
-3. Google Business Profile optimization for small business
-4. local SEO services for wedding photographers Tharangambadi
-5. graphic design for bridal tailoring shops
-6. IT support for MSME companies Tamil Nadu
-7. website maintenance services Tharangambadi
-8. SEO for local businesses near me
-9. UI/UX design for e-commerce websites
-10. digital marketing agency Tharangambadi
+- Web development company in Tharangambadi
+- Website design in Tharangambadi
+- IT consulting in Tharangambadi
+- Local SEO services in Tharangambadi
+- Google Business Profile management in Tharangambadi
 
-## Location-Based Keywords
-1. IT company Tharangambadi
-2. web developer near Tharangambadi
-3. SEO expert Mayiladuthurai
-4. digital services Kumbakonam
-5. tech support Nagapattinam district
-6. website designer Poompuhar
-7. IT consultant Karaikal
-8. Google My Business expert Tranquebar
+## Related service phrases
 
-## Question-Based Keywords
-1. best IT company in Tharangambadi?
-2. how to rank #1 on Google Maps in Tharangambadi?
-3. where to get website development in Mayiladuthurai?
-4. affordable SEO services near Tharangambadi?
-5. MSME registered IT company in Tamil Nadu?
+- UI/UX design services in Tamil Nadu
+- Graphic design for local businesses
+- Small business website development
+- Website maintenance services in Tamil Nadu
+- Google Maps visibility and local search optimization
+- E-commerce website development in Tamil Nadu
 
-## Competitor Keywords to Target
-1. local SEO services (competitor: local freelancers)
-2. Google Business Profile optimization (competitor: national agencies)
-3. UI/UX design for small business (competitor: large design firms)
-4. website development for photographers (competitor: generic web devs)
+## Nearby service areas
 
+Use these only where the business genuinely serves customers; do not create thin, repetitive location pages:
 
-## folder structure
-public/
-├── robots.txt
-├── sitemap.xml
-├── site.webmanifest
-├── favicon.ico
-├── favicon-16x16.png
-├── favicon-32x32.png
-├── apple-touch-icon.png
-└── og-image.jpg (1200x630px)
+- Website development in Mayiladuthurai
+- Digital services in Kumbakonam
+- IT support in Nagapattinam district
+- Web design in Poompuhar
+- IT consulting in Karaikal
 
-src/
-├── components/
-├── App.jsx
-├── App.css
-├── index.css
-└── main.jsx
+## Long-tail and customer-intent phrases
+
+- Affordable website development for small businesses in Tharangambadi
+- Local SEO help for businesses near Mayiladuthurai
+- Google Business Profile optimization for small businesses
+- Website design and maintenance for Tamil Nadu businesses
+- How to improve a local business's visibility on Google Maps
+
+## On-page guidance
+
+- Focus each page on one service and its real customer intent. Add dedicated service pages only when they contain useful, original details.
+- Use a clear page title, one descriptive H1, concise headings, and natural service/location references.
+- Include real project examples, client permission, verifiable outcomes, and descriptive image alt text.
+- Keep the business name, address, phone number, service areas, and opening hours consistent with the Google Business Profile.
+- Request genuine customer reviews; never fabricate reviews, rankings, credentials, or performance metrics.
+- Keep the canonical URL, sitemap, and Search Console property aligned with the chosen public domain.
+
+## Technical SEO checklist
+
+- The production build prerenders the React page into HTML so the main content is present before client-side JavaScript runs.
+- Keep the single-page sitemap limited to canonical, indexable URLs; do not submit `#section` fragments as separate pages.
+- Deploy `public/_headers` with Netlify so hashed assets can be cached for a year while the homepage is revalidated.
+- After every deploy, check the live page, sitemap, and robots file; validate structured data and inspect indexing in Google Search Console.
+- Use PageSpeed Insights and Search Console Core Web Vitals reports to measure real performance; optimize only from observed issues.
+- Add accurate alt text when adding meaningful images and use compressed, appropriately sized image files.
+
+## Off-page SEO actions
+
+These actions require business-owner participation and must use genuine information:
+
+1. Complete and maintain the verified Google Business Profile with the exact real business name, service area, phone, website, hours, services, and original photos.
+2. Ask actual customers for honest reviews after completed work. Reply helpfully and do not offer incentives or write reviews on customers' behalf.
+3. Request links or project credits from real clients when they are happy with completed work and consent to being featured.
+4. Keep name, address or service area, and phone consistent on reputable Indian business directories and local industry associations.
+5. Publish useful original case studies or practical articles, then share them with relevant local business communities and partners without spam.
+6. Prefer a business-owned custom domain when available. If changing domains, configure redirects and update canonical URLs, sitemap, Search Console, Analytics, business profiles, and external links together.
+7. Avoid paid link schemes, bulk directory submissions, fake reviews, and fabricated credentials or ranking claims.

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import './App.css';
 
 
@@ -195,13 +195,12 @@ function Hero() {
             </div>
             
             <h1 className="mt-6 max-w-4xl font-display text-4xl leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Automate. Rank. Scale.<br />
-              <span className="text-primary">Digital growth solutions</span> for SMEs.
+              Web development, IT consulting &amp; local SEO in <span className="text-primary">Tharangambadi.</span>
             </h1>
             
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Raventrix Technologies helps small and medium businesses in Tharangambadi, Mayiladuthurai, and across Tamil 
-              Nadu build better websites, improve local search visibility, and automate growth with reliable technology.
+              Raventrix Technologies helps businesses in Tharangambadi, Mayiladuthurai, and across Tamil Nadu build
+              effective websites, strengthen local search visibility, and choose practical technology solutions.
             </p>
             
             {/* Buttons - Stack on mobile, row on tablet+ */}
@@ -299,7 +298,7 @@ function Hero() {
                       SEO/GBP
                     </p>
                     <p className="mt-1 text-xs text-muted-foreground sm:mt-2 sm:text-sm">
-                      #1 for "near me" in Tharangambadi.
+                      Local SEO for Tharangambadi businesses.
                     </p>
                   </div>
                   
@@ -392,6 +391,48 @@ function Portfolio() {
         </div>
       </div>
       {selected && <CaseStudyModal study={selected} onClose={() => setSelected(null)} />}
+    </section>
+  );
+}
+
+function FAQ() {
+  const questions = [
+    {
+      question: 'What services does Raventrix Technologies provide?',
+      answer: 'Raventrix provides IT consulting, website development, UI/UX design, local SEO, Google Business Profile management, and graphic design.',
+    },
+    {
+      question: 'Which locations do you serve?',
+      answer: 'Raventrix is based in Tharangambadi and serves businesses in Mayiladuthurai, Kumbakonam, and other areas of Tamil Nadu.',
+    },
+    {
+      question: 'How can I request a project consultation?',
+      answer: 'Use the enquiry form on this page to share your business details and the service you need. The form opens WhatsApp with your enquiry so you can send it directly.',
+    },
+    {
+      question: 'How much does a website or SEO project cost?',
+      answer: 'Project costs depend on the work involved. Contact Raventrix with your goals and requirements to discuss a suitable scope and quote.',
+    },
+  ];
+
+  return (
+    <section aria-labelledby="faq-title" className="px-5 py-20 md:px-8">
+      <div className="mx-auto max-w-4xl">
+        <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">FAQs</p>
+        <h2 id="faq-title" className="mt-4 font-display text-4xl text-foreground md:text-5xl">
+          Common questions about our services
+        </h2>
+        <div className="mt-8 divide-y divide-border rounded-3xl border border-border bg-card px-6">
+          {questions.map(({ question, answer }) => (
+            <details key={question} className="py-5">
+              <summary className="cursor-pointer font-semibold text-foreground marker:text-primary">
+                {question}
+              </summary>
+              <p className="mt-3 leading-7 text-muted-foreground">{answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
@@ -640,6 +681,7 @@ export default function App() {
       <Hero />
       <Services />
       <Portfolio />
+      <FAQ />
       <Contact />
       <LeadForm />
       <Footer />
