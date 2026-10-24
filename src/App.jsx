@@ -9,12 +9,12 @@ const MAPS_URL = 'https://maps.app.goo.gl/3zmBRxVTLu2P95U96/';
 const GBP_URL = 'https://share.google/nSeinVBaIR2vEuEhy';
 
 const services = [
-  { icon: 'strategy', title: 'IT Consulting', description: 'Technology strategy & implementation guidance for Tharangambadi businesses.', features: ['Technology assessment', 'Digital strategy', 'Security audits'] },
-  { icon: 'design', title: 'UI/UX Design', description: 'Intuitive interfaces that users love, designed for local businesses.', features: ['User research', 'Wireframing & prototyping', 'Design systems'] },
-  { icon: 'code', title: 'Website Development', description: 'Fast, custom websites that bring you leads from Tharangambadi and beyond.', features: ['High-performance architecture', 'Mobile responsive design', 'Custom-tailored solutions'] },
-  { icon: 'map', title: 'Google Business Profile Management', description: 'Get found on Google Maps and local search in Tharangambadi and Tamil Nadu.', features: ['Hyper-local visibility', 'Review automation', 'Map pack domination'] },
-  { icon: 'search', title: 'Local SEO', description: 'Rank for "near me" searches in Tharangambadi. Get more foot traffic.', features: ['Regional keyword targeting', 'Citation frameworks', 'NAP consistency'] },
-  { icon: 'brand', title: 'Graphic Design', description: 'Logos, brochures, social media graphics for Tharangambadi businesses.', features: ['Brand identity', 'Social media graphics', 'Print materials'] },
+  { icon: 'strategy', title: 'IT Consulting', description: 'Practical technology planning and implementation guidance for small businesses in Tharangambadi and Tamil Nadu.', features: ['Technology assessment', 'Digital strategy', 'Workflow planning'] },
+  { icon: 'design', title: 'UI/UX Design', description: 'Clear, responsive website and app interfaces designed around your customers and business goals.', features: ['User journeys', 'Wireframes & prototypes', 'Responsive design systems'] },
+  { icon: 'code', title: 'Website Development', description: 'Website design and development for businesses that need a clear, mobile-friendly online presence.', features: ['Responsive layouts', 'Business-focused content structure', 'Search-friendly foundations'] },
+  { icon: 'map', title: 'Google Business Profile Management', description: 'Accurate Google Business Profile information to help nearby customers understand your services and contact your business.', features: ['Profile information and categories', 'Service and area details', 'Guidance for genuine customer reviews'] },
+  { icon: 'search', title: 'Local SEO', description: 'Local SEO foundations that help search engines and customers understand your services and service area.', features: ['Local keyword research', 'On-page SEO improvements', 'Business listing consistency'] },
+  { icon: 'brand', title: 'Graphic Design', description: 'Brand identity, brochures and social media graphics for small businesses in Tharangambadi and nearby areas.', features: ['Brand identity', 'Social media graphics', 'Print materials'] },
 ];
 
 const caseStudies = [
@@ -127,6 +127,9 @@ function Header() {
         <button 
           className="rounded-full border border-border p-2.5 text-foreground transition hover:border-primary hover:text-primary md:hidden" 
           onClick={() => setOpen(!open)}
+          aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           <Icon name={open ? 'close' : 'menu'} />
         </button>
@@ -134,7 +137,7 @@ function Header() {
       
       {/* Mobile Navigation Drawer */}
       {open && (
-        <div className="border-t border-border bg-card/95 backdrop-blur-lg px-5 py-6 md:hidden">
+        <div id="mobile-navigation" className="border-t border-border bg-card/95 backdrop-blur-lg px-5 py-6 md:hidden">
           <div className="flex flex-col gap-4">
             {links.map((link) => (
               <a 
@@ -195,12 +198,12 @@ function Hero() {
             </div>
             
             <h1 className="mt-6 max-w-4xl font-display text-4xl leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
-              Web development, IT consulting &amp; local SEO in <span className="text-primary">Tharangambadi.</span>
+              Web development &amp; local SEO in <span className="text-primary">Tharangambadi, Tamil Nadu.</span>
             </h1>
             
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Raventrix Technologies helps businesses in Tharangambadi, Mayiladuthurai, and across Tamil Nadu build
-              effective websites, strengthen local search visibility, and choose practical technology solutions.
+              Raventrix Technologies provides website design, IT consulting, Google Business Profile management and
+              local SEO services for businesses in Tharangambadi, Mayiladuthurai and across Tamil Nadu.
             </p>
             
             {/* Buttons - Stack on mobile, row on tablet+ */}
@@ -335,7 +338,7 @@ function Services() {
   return (
     <section id="services" className="px-5 py-20 md:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Services</p><h2 className="mt-4 font-display text-4xl text-foreground md:text-6xl">Practical technology services for local growth.</h2><p className="mt-5 text-lg text-muted-foreground">From digital strategy to Google visibility, every service is crafted for SMEs that need dependable execution and measurable outcomes.</p></div>
+        <div className="max-w-3xl"><p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Services</p><h2 className="mt-4 font-display text-4xl text-foreground md:text-6xl">IT, web development and local SEO services in Tharangambadi.</h2><p className="mt-5 text-lg text-muted-foreground">Raventrix Technologies supports small businesses with website development, IT consulting, UI/UX design, Google Business Profile management and graphic design across Tamil Nadu.</p></div>
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => <article key={service.title} className="group rounded-[2rem] border border-border bg-card p-6 transition duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_24px_80px_#E67514/0.12]"><div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-primary/15 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground"><Icon name={service.icon} className="h-7 w-7" /></div><h3 className="font-display text-2xl text-foreground">{service.title}</h3><p className="mt-3 leading-7 text-muted-foreground">{service.description}</p><ul className="mt-6 space-y-3">{service.features.map((feature) => <li key={feature} className="flex items-center gap-3 text-sm text-foreground"><span className="h-1.5 w-1.5 rounded-full bg-primary" />{feature}</li>)}</ul></article>)}
         </div>
@@ -343,6 +346,68 @@ function Services() {
     </section>
   );
 }
+
+function ServiceDetails() {
+  return (
+    <section aria-labelledby="service-details-title" className="px-5 py-20 md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">How we help</p>
+          <h2 id="service-details-title" className="mt-4 font-display text-4xl text-foreground md:text-5xl">
+            Practical technology and digital services for Tharangambadi businesses
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-muted-foreground">
+            A useful digital presence starts with clear information and a straightforward way for customers to get in
+            touch. Raventrix Technologies is an MSME registered technology company in Tamil Nadu. We work with
+            businesses to identify their needs, choose a practical scope and improve the parts of their online presence
+            that matter to their customers.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-8 md:grid-cols-2">
+          <article className="rounded-3xl border border-border bg-card p-7">
+            <h3 className="font-display text-2xl text-foreground">Website design and web development</h3>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              Our website development process covers page structure, responsive UI/UX design, content presentation and
+              implementation. We aim to make it easy for visitors to understand your services, browse on mobile devices
+              and contact your business. Search-friendly foundations include descriptive page titles and headings,
+              accessible navigation, sensible internal links and crawlable page content.
+            </p>
+          </article>
+
+          <article className="rounded-3xl border border-border bg-card p-7">
+            <h3 className="font-display text-2xl text-foreground">Local SEO and Google Business Profile management</h3>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              Local SEO helps make your services, location and contact information clear and consistent. Work may include
+              reviewing page titles and descriptions, local business details, technical indexing signals and the
+              accuracy of your Google Business Profile. We can guide profile improvements and a process for requesting
+              honest customer reviews; search positions depend on many factors and cannot be guaranteed.
+            </p>
+          </article>
+
+          <article className="rounded-3xl border border-border bg-card p-7">
+            <h3 className="font-display text-2xl text-foreground">IT consulting and digital planning</h3>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              IT consulting helps you evaluate technology choices, plan website or workflow improvements and prioritize
+              next steps. Recommendations are based on your goals, current setup, budget and the needs of your team—not
+              a one-size-fits-all package.
+            </p>
+          </article>
+
+          <article className="rounded-3xl border border-border bg-card p-7">
+            <h3 className="font-display text-2xl text-foreground">Serving Tharangambadi and Tamil Nadu</h3>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              Based in Tharangambadi, Raventrix Technologies works with businesses in Mayiladuthurai, Kumbakonam and
+              surrounding Tamil Nadu communities. If you are looking for a website developer or local SEO support near
+              Tharangambadi, contact us with your location, business and project goals to discuss whether we can help.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Import images at the top of your App.jsx file
 
 
@@ -420,7 +485,7 @@ function FAQ() {
       <div className="mx-auto max-w-4xl">
         <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">FAQs</p>
         <h2 id="faq-title" className="mt-4 font-display text-4xl text-foreground md:text-5xl">
-          Common questions about our services
+          FAQs about web development and local SEO services
         </h2>
         <div className="mt-8 divide-y divide-border rounded-3xl border border-border bg-card px-6">
           {questions.map(({ question, answer }) => (
@@ -546,12 +611,17 @@ function LeadForm() {
         <div><p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary">Work with Raventrix</p><h2 className="mt-4 font-display text-4xl text-foreground md:text-5xl">Work with a registered tech company in Tharangambadi</h2><p className="mt-5 text-lg leading-8 text-muted-foreground">Partner with an MSME registered company that understands local businesses, regional search behaviour, and practical technology execution for Tamil Nadu SMEs.</p></div>
         <form onSubmit={submit} className="rounded-[2rem] border border-border bg-background p-5 md:p-7">
           <div className="grid gap-4 sm:grid-cols-2">
-            <input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Full Name" className="rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" />
-            <input required value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Company Name" className="rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" />
-            <input required value={form.mobile} onChange={(e) => setForm({ ...form, mobile: e.target.value })} placeholder="Mobile Number" inputMode="numeric" className="rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" />
-            <input value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} placeholder="Website (Optional)" className="rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" />
+            <label className="sr-only" htmlFor="lead-name">Full name</label>
+            <input id="lead-name" name="name" autoComplete="name" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Full Name" className="rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" />
+            <label className="sr-only" htmlFor="lead-company">Company name</label>
+            <input id="lead-company" name="company" autoComplete="organization" required value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} placeholder="Company Name" className="rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" />
+            <label className="sr-only" htmlFor="lead-mobile">Mobile number</label>
+            <input id="lead-mobile" name="mobile" autoComplete="tel" required value={form.mobile} onChange={(e) => setForm({ ...form, mobile: e.target.value })} placeholder="Mobile Number" inputMode="numeric" className="rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" />
+            <label className="sr-only" htmlFor="lead-website">Website (optional)</label>
+            <input id="lead-website" name="website" type="url" autoComplete="url" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} placeholder="Website (Optional)" className="rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary" />
           </div>
-          <select required value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className="mt-4 w-full rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition focus:border-primary"><option value="">Service Needed</option>{serviceOptions.map((service) => <option key={service} value={service}>{service}</option>)}</select>
+          <label className="sr-only" htmlFor="lead-service">Service needed</label>
+          <select id="lead-service" name="service" required value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} className="mt-4 w-full rounded-2xl border border-input bg-card px-4 py-4 text-foreground outline-none transition focus:border-primary"><option value="">Service Needed</option>{serviceOptions.map((service) => <option key={service} value={service}>{service}</option>)}</select>
           {error && <p className="mt-4 rounded-2xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive">{error}</p>}
           <button type="submit" className="mt-5 w-full rounded-full bg-primary px-7 py-4 font-semibold text-primary-foreground transition hover:bg-accent hover:text-accent-foreground">Send Message →</button>
         </form>
@@ -680,6 +750,7 @@ export default function App() {
       <Header />
       <Hero />
       <Services />
+      <ServiceDetails />
       <Portfolio />
       <FAQ />
       <Contact />
