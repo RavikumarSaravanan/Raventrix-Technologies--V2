@@ -1,68 +1,77 @@
-# Raventrix Technologies: SEO Keyword Strategy
+# Raventrix Technologies SEO Keyword and Content Plan
 
-SEO can improve relevance and discoverability, but no keyword or on-page change guarantees a #1 ranking. Rankings depend on competition, location, business profile signals, links, content quality, and time.
+## Ranking expectations
 
-## Primary service and location phrases
+No keyword, metadata change, or technical SEO update guarantees a first-place search ranking. Rankings vary by searcher location, competition, business profile quality, site authority, and the usefulness of the content. Treat these phrases as customer-intent topics, not terms to repeat unnaturally.
 
-- Web development company in Tharangambadi
+Google does not use the `meta keywords` tag for ranking. The site intentionally does not include one.
+
+## Primary homepage intent
+
+The homepage targets local businesses looking for a web or digital services provider near Tharangambadi.
+
+- Website development in Tharangambadi
 - Website design in Tharangambadi
-- IT consulting in Tharangambadi
-- Local SEO services in Tharangambadi
-- Google Business Profile management in Tharangambadi
+- Web developer in Mayiladuthurai
+- Website design for small businesses in Tamil Nadu
+- Digital services for small businesses in Tamil Nadu
 
-## Related service phrases
+## Supporting service intent
 
+Use these as natural headings and explanations on the existing service section. Create separate indexable service pages only when they can provide substantial, original detail and a useful user journey.
+
+- Local SEO services in Tamil Nadu
+- Local SEO for businesses in Tharangambadi
+- Google Business Profile management in Tamil Nadu
 - UI/UX design services in Tamil Nadu
+- AI workflow automation for small businesses
 - Graphic design for local businesses
-- Small business website development
-- Website maintenance services in Tamil Nadu
-- Google Maps visibility and local search optimization
-- E-commerce website development in Tamil Nadu
 
-## Nearby service areas
+## Nearby areas
 
-Use these only where the business genuinely serves customers; do not create thin, repetitive location pages:
+Mention a nearby place only when the company genuinely serves it. Do not create near-identical doorway pages for every location.
 
 - Website development in Mayiladuthurai
-- Digital services in Kumbakonam
-- IT support in Nagapattinam district
+- Web design in Kumbakonam
+- Digital services in Nagapattinam district
 - Web design in Poompuhar
 - IT consulting in Karaikal
 
-## Long-tail and customer-intent phrases
+## Long-tail customer questions
 
-- Affordable website development for small businesses in Tharangambadi
-- Local SEO help for businesses near Mayiladuthurai
-- Google Business Profile optimization for small businesses
-- Website design and maintenance for Tamil Nadu businesses
-- How to improve a local business's visibility on Google Maps
+- How do I get a business website made in Tharangambadi?
+- What should a small business website include?
+- How can a local business improve its Google Business Profile?
+- How can businesses in Tamil Nadu improve local search visibility?
+- Can an existing business website be redesigned?
+- What affects the cost and timeline of a business website?
 
 ## On-page guidance
 
-- Focus each page on one service and its real customer intent. Add dedicated service pages only when they contain useful, original details.
-- Use a clear page title, one descriptive H1, concise headings, and natural service/location references.
-- Include real project examples, client permission, verifiable outcomes, and descriptive image alt text.
-- Keep the business name, address, phone number, service areas, and opening hours consistent with the Google Business Profile.
-- Request genuine customer reviews; never fabricate reviews, rankings, credentials, or performance metrics.
-- Keep the canonical URL, sitemap, and Search Console property aligned with the chosen public domain.
+- Keep one clear page title, one primary H1, and a concise, useful meta description per indexable page.
+- Use the main location and service phrase naturally in the page title, hero copy, and relevant section content; do not repeat phrases solely for density.
+- Expand the homepage into dedicated service pages only when each page can explain the problem, deliverables, process, and relevant work in original detail.
+- Add accurate alt text to meaningful images; use empty alt text for decorative images.
+- Publish real case studies only with accurate descriptions, working project URLs, client permission, and verifiable results. Do not imply results where none have been measured.
+- Keep business name, phone, email, service area, and any published hours consistent with the business's verified Google Business Profile.
+- Keep canonical URLs, sitemap entries, robots directives, and Search Console property aligned to the deployed domain.
 
 ## Technical SEO checklist
 
-- The production build prerenders the React page into HTML so the main content is present before client-side JavaScript runs.
-- Keep the single-page sitemap limited to canonical, indexable URLs; do not submit `#section` fragments as separate pages.
-- Deploy `public/_headers` with Netlify so hashed assets can be cached for a year while the homepage is revalidated.
-- After every deploy, check the live page, sitemap, and robots file; validate structured data and inspect indexing in Google Search Console.
-- Use PageSpeed Insights and Search Console Core Web Vitals reports to measure real performance; optimize only from observed issues.
-- Add accurate alt text when adding meaningful images and use compressed, appropriately sized image files.
+- The production build prerenders the React page so its main content is available in the initial HTML response.
+- The sitemap lists only the canonical homepage; section fragments are not separate indexable URLs.
+- `public/robots.txt` permits crawling and points crawlers to the sitemap.
+- `public/_headers` configures asset caching for Netlify.
+- Verify the deployed homepage, sitemap, and robots file after every release.
+- Validate JSON-LD with Google's Rich Results Test or Schema Markup Validator and monitor indexing in Search Console.
+- Use PageSpeed Insights and Search Console Core Web Vitals to guide measured performance fixes; do not claim scores without running the tests.
 
-## Off-page SEO actions
+## Off-page work requiring business-owner participation
 
-These actions require business-owner participation and must use genuine information:
-
-1. Complete and maintain the verified Google Business Profile with the exact real business name, service area, phone, website, hours, services, and original photos.
-2. Ask actual customers for honest reviews after completed work. Reply helpfully and do not offer incentives or write reviews on customers' behalf.
-3. Request links or project credits from real clients when they are happy with completed work and consent to being featured.
-4. Keep name, address or service area, and phone consistent on reputable Indian business directories and local industry associations.
-5. Publish useful original case studies or practical articles, then share them with relevant local business communities and partners without spam.
-6. Prefer a business-owned custom domain when available. If changing domains, configure redirects and update canonical URLs, sitemap, Search Console, Analytics, business profiles, and external links together.
-7. Avoid paid link schemes, bulk directory submissions, fake reviews, and fabricated credentials or ranking claims.
+1. Maintain the verified Google Business Profile with accurate business details, service areas, services, hours, and original photos.
+2. Invite actual customers to leave honest reviews after completed work. Do not buy reviews, offer incentives for positive reviews, or write reviews for customers.
+3. Request project credits or links from real clients only with their permission.
+4. Keep business details consistent on relevant, reputable local directories and industry sites.
+5. Publish useful original case studies or articles and share them with relevant communities without spam.
+6. Consider a business-owned domain. If the domain changes, configure redirects and update the canonical URL, sitemap, Search Console, Analytics, profiles, and links together.
+7. Avoid paid link schemes, bulk directory submissions, fabricated credentials, fake rankings, and doorway pages.
